@@ -1,0 +1,34 @@
+/**
+ * Copyright © 2017 Open Text.  All Rights Reserved.
+ */
+package com.appworks.eim.connector.example;
+
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
+
+import javax.servlet.*;
+import java.util.Set;
+
+public class WebXmlLessInitializer implements WebApplicationInitializer, ServletContainerInitializer {
+
+    @Override
+    public void onStartup(ServletContext servletContext) {
+        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+        ctx.register(Config.class);
+
+        servletContext.addListener(new ContextLoaderListener(ctx));
+
+        // deploy the application on {host}/appworks-spring-mvc-service/api/
+        ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
+        servlet.addMapping("/api/*");
+        servlet.setLoadOnStartup(1);
+    }
+
+    @Override
+    public void onStartup(Set<Class<?>> arg0, ServletContext arg1) {
+        onStartup(arg1);
+    }
+
+}
