@@ -1,5 +1,5 @@
 /**
- * Copyright © 2017 Open Text.  All Rights Reserved.
+ * Copyright © 2018 Open Text.  All Rights Reserved.
  */
 package com.appworks.eim.connector.example;
 

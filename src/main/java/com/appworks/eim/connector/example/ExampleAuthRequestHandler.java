@@ -1,3 +1,6 @@
+/**
+ * Copyright © 2018 Open Text.  All Rights Reserved.
+ */
 package com.appworks.eim.connector.example;
 
 import com.opentext.otag.sdk.client.v3.AuthClient;
